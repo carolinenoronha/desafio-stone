@@ -22,29 +22,33 @@ function calculaEdistribui(listaCompras,listaEmails){
 
     //Condicional para distribuir o montante da compra por endereço de email caso seja igual pra todos
 
-    
-       if (valorTotalCompra%tamanhoListaEmails == 0){
-            for (let i = 0;i<tamanhoListaEmails; i++){
-                valoresDistribuidos.push(`${valorTotalCompra/tamanhoListaEmails} centavos para: ${listaEmails[i]}`)
-
-            }
-            return valoresDistribuidos
+    let map = new Map()
+    if (valorTotalCompra%tamanhoListaEmails == 0){
+        for (let i = 0;i<tamanhoListaEmails; i++){
+            let valor = valorTotalCompra/tamanhoListaEmails
+            //valoresDistribuidos.push(`${valorTotalCompra/tamanhoListaEmails} centavos para: ${listaEmails[i]}`)
+            // insere no mapa
+            map.set(listaEmails[i], valor)
         }
+        return map
+    }
         
          
     //Condicional para distribuir o montante da compra por endereço de email caso seja não igual pra todos    
     if (valorTotalCompra%tamanhoListaEmails != 0){
-            for (let i = 0;i<tamanhoListaEmails; i++){
-                valoresDistribuidos.push(Math.floor(valorTotalCompra/tamanhoListaEmails)) 
-                valoresDistribuidos.push(` centavos para ${listaEmails[i]}`)
-            }
+        for (let i = 0;i<tamanhoListaEmails; i++){
+            valoresDistribuidos.push(Math.floor(valorTotalCompra/tamanhoListaEmails))
+        }
 
-            for (let j=0;j < valorTotalCompra%tamanhoListaEmails; j++){
-                valoresDistribuidos[j] = valoresDistribuidos[j]+1
-            }           
+        for (let j=0;j < valorTotalCompra%tamanhoListaEmails; j++){
+            valoresDistribuidos[j] = valoresDistribuidos[j]+1
+        }
 
-               return valoresDistribuidos
-            }
+        for (let k = 0;k < listaEmails.length; k++) {
+            map.set(listaEmails[k], valoresDistribuidos[k])
+        }
+        return map
+    }
     
         }
     //Retorna mensagem de "erro" caso haja uma lista vazia
