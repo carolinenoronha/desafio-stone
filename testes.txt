@@ -1,0 +1,70 @@
+//Teste 1: Valores não iguais por pessoa
+
+console.log(calculaEdistribui(
+[   
+    {
+        "item": "Chocolate",
+        "qtd": 5,
+        "preco": 107
+    },
+    { 
+        "item": "Laranja",
+        "qtd": 8,
+        "preco": 10
+    },
+    {
+        "item": "Pão",
+        "qtd": 6,
+        "preco": 60
+    }
+], 
+['email1@exemplo.com', 'email2@exemplo.com', 'email3@exemplo.com', 'email4@exemplo.com']
+)) 
+
+//Teste 2: Valores iguais por pessoa
+
+console.log(calculaEdistribui(
+    [
+   {
+        "item": "Laranja",    
+        "qtd": 8,
+        "preco": 9
+    },
+    { 
+        "item": "Pão",
+        "qtd": 6,
+        "preco": 60
+    }
+    ], 
+['email1@exemplo','email2@exemplo','email3@exemplo','email4@exemplo','email5@exemplo','email6@exemplo']
+))
+
+//Teste 3: Lista de emails maior que o total dos produtos
+console.log(calculaEdistribui(
+    [
+    {
+        "item": "Laranja",
+        "qtd": 2,
+        "preco": 3
+    }
+], 
+['email1@exemplo','email2@exemplo','email3@exemplo','email4@exemplo','email5@exemplo','email6@exemplo', 'email7@exemplo']
+))
+
+//Teste 4: Com lista vazia
+
+console.log(calculaEdistribui(
+    [
+     {
+        "item": "Laranja",
+        "qtd": 8,
+        "preco": 9
+    },
+    {
+        "item": "Pão",
+        "qtd": 6,
+        "preco": 60
+    }
+], 
+[]
+))
