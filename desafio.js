@@ -21,17 +21,22 @@ function calculaEdistribui(listaCompras,listaEmails){
     let valoresDistribuidos = []
 
     //Condicional para distribuir o montante da compra por endereço de email caso seja igual pra todos
+
+    
        if (valorTotalCompra%tamanhoListaEmails == 0){
             for (let i = 0;i<tamanhoListaEmails; i++){
-                valoresDistribuidos.push(valorTotalCompra/tamanhoListaEmails)
-            }
+                valoresDistribuidos.push(`${valorTotalCompra/tamanhoListaEmails} centavos para: ${listaEmails[i]}`)
 
-        return valoresDistribuidos
-        } 
-    //Condicional para distribuir o montante da compra por endereço de email caso seja não igual pra todos
-        if (valorTotalCompra%tamanhoListaEmails != 0){
+            }
+            return valoresDistribuidos
+        }
+        
+         
+    //Condicional para distribuir o montante da compra por endereço de email caso seja não igual pra todos    
+    if (valorTotalCompra%tamanhoListaEmails != 0){
             for (let i = 0;i<tamanhoListaEmails; i++){
                 valoresDistribuidos.push(Math.floor(valorTotalCompra/tamanhoListaEmails)) 
+                valoresDistribuidos.push(` centavos para ${listaEmails[i]}`)
             }
 
             for (let j=0;j < valorTotalCompra%tamanhoListaEmails; j++){
@@ -40,11 +45,31 @@ function calculaEdistribui(listaCompras,listaEmails){
 
                return valoresDistribuidos
             }
-    }
-
+    
+        }
     //Retorna mensagem de "erro" caso haja uma lista vazia
 
     else{
         return "A lista de compras ou a lista de emails está vazia. Por favor, preencha-as devidamente."
     }
+
+
 }
+
+
+console.log(calculaEdistribui(
+    [   
+        { 
+            "item": "Laranja",
+            "qtd": 1,
+            "preco": 1
+        },
+        {
+            "item": "Pão",
+            "qtd": 7,
+            "preco": 9
+        }
+    ], 
+    ['email1@exemplo.com', 'email2@exemplo.com', 'email3@exemplo.com']
+    )) 
+
